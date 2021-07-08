@@ -5,7 +5,6 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import pandas as pd
 import numpy as np
-import plotly.express as px
 
 y_axis_neck, y_axis_knee, y_axis_hip, y_axis_ankle, y_axis_kneey = [0], [0], [0], [0], [0]
 x_axis = [0]
@@ -16,7 +15,7 @@ global data
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets, title="Visualizations")
 
 app.layout = html.Div([
     dcc.Interval(

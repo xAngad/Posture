@@ -1,14 +1,13 @@
-import cv2
-import mediapipe as mp
-import SquatPosture as sp
-import pandas as pd
-import numpy as np
 import tensorflow as tf
-from utils import *
-from csv import writer
-
+import pandas as pd
+import mediapipe as mp
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
+
+import SquatPosture as sp
+from utils import *
+
+
 
 # df = pd.DataFrame([[0, 0, 0, 0, 0]], columns=['neck', 'knee', 'hip', 'ankle', 'y-knee'])
 # df.to_csv('plot_data.csv', index=False)
@@ -23,7 +22,7 @@ dict = {'neck': [],
 # For video input:
 cap = cv2.VideoCapture(0)
 
-model = tf.keras.models.load_model("working_model_1")
+model = tf.keras.models.load_model("working_model")
 counter_for_renewal = 0
 with mp_pose.Pose() as pose:
     while cap.isOpened():
@@ -101,5 +100,6 @@ with mp_pose.Pose() as pose:
 
         if cv2.waitKey(5) & 0xFF == 27:
             break
+
 cap.release()
 cv2.destroyAllWindows()

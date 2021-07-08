@@ -30,8 +30,8 @@ def gen(camera):
             if not success:
                 print("Ignoring empty camera frame.")
                 # If loading a video, use 'break' instead of 'continue'.
-                continue
-                # break
+                # continue
+                break
 
             image_height, image_width, _ = image.shape
 
@@ -85,11 +85,11 @@ def gen(camera):
 
             i += 1
 
-            mp_drawing.draw_landmarks(
-                image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
-
-            coords = landmarks_list_to_array(results.pose_landmarks, image.shape)
-            label_params(image, params, coords)
+            # mp_drawing.draw_landmarks(
+            #     image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
+            #
+            # coords = landmarks_list_to_array(results.pose_landmarks, image.shape)
+            # label_params(image, params, coords)
 
 
             ret, jpeg = cv2.imencode('.jpg', image)

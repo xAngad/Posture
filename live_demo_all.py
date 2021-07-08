@@ -1,15 +1,14 @@
-import cv2
-import mediapipe as mp
-import SquatPosture as sp
-import pandas as pd
-import numpy as np
 import tensorflow as tf
-from utils import *
 from csv import writer
-
-csv_file = open('plotting_live.csv', 'w+')
+import mediapipe as mp
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
+
+import SquatPosture as sp
+from utils import *
+
+csv_file = open('plotting_live.csv', 'w+')
+
 writer_object = writer(csv_file)
 writer_object.writerow(['neck', 'knee', 'hip', 'ankle', 'y-knee'])
 
@@ -24,8 +23,8 @@ with mp_pose.Pose() as pose:
         if not success:
             print("Ignoring empty camera frame.")
             # If loading a video, use 'break' instead of 'continue'.
-            # continue
-            break
+            continue
+            # break
 
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         image.flags.writeable = False

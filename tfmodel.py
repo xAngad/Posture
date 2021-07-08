@@ -1,13 +1,8 @@
-import pprint
-import pandas as pd
 import tensorflow as tf
-from data_processing.create_data_matrices import get_data
-import matplotlib.pyplot as plt
-import numpy as np
 from tensorflow import keras
-from tensorflow.keras import layers
-# from pycm import *
-# import seaborn as sns
+import matplotlib.pyplot as plt
+from pycm import *
+from data_processing.create_data_matrices import get_data
 
 USE_MODEL = False
 
@@ -57,6 +52,7 @@ if not USE_MODEL:
     plt.legend()
 
     plt.show()
+
 else:
     model = tf.keras.models.load_model("working_model_1")
     preds = model.predict(test_features)

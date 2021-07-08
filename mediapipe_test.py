@@ -1,15 +1,15 @@
-import cv2
 import mediapipe as mp
-import SquatPosture as sp
-import numpy as np
-from utils import *
-
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
+import SquatPosture as sp
+from utils import *
+
+
+
 # For video input:
-# cap = cv2.VideoCapture("data/processed/024_squat.mp4")
 cap = cv2.VideoCapture(0)
+# cap = cv2.VideoCapture(0)
 
 with mp_pose.Pose(
         min_detection_confidence=0.5,
@@ -49,6 +49,5 @@ with mp_pose.Pose(
 
         if cv2.waitKey(5) & 0xFF == 27:
             break
-
 cap.release()
 cv2.destroyAllWindows()
