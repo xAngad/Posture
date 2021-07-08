@@ -1,6 +1,6 @@
 # Posture: Pose Tracking and Machine Learning for prescribing corrective suggestions to improve posture and form while exercising.
 
-This repository contains my __forked__ version of [Posture](https://github.com/twixupmysleeve/Posture).
+##### THIS REPOSITORY CONTAINS MY __FORKED__ VERSION OF [Posture](https://github.com/twixupmysleeve/Posture).
 
 > _Differences between this fork and the original:_
 > - _`app_squat.py` ie. the final web app runs purely on Flask instead of Dash-Plotly_
