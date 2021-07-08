@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main.css') }}">
+    <title> Posture </title>
+</head>
+
+<body>
+    <div class="main-container">
+        <table cellspacing="20px" class="table">
+            <tr class="row">
+                <td> <img src="{{ url_for('static',filename='animation_for_web.gif') }}" class="logo" /> </td>
+            </tr>
+            <tr class="choices">
+                <td> Your personal AI Gym Trainer </td>
+            </tr>
+            <tr class="row">
+                <td> <img src='{{ url_for("video_feed") }}' class="feed"/> </td>
+            </tr>
+            <tr class="disclaimer">
+                <td> Please ensure that the scene is well lit and your entire body is visible </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
