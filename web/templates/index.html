@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main.css') }}">
+    <link rel="icon" href="{{ url_for('static',filename='posture-logo.png') }}">
     <title> Posture </title>
 </head>
 
@@ -20,7 +21,7 @@
                 <td> <img src='{{ url_for("video_feed") }}' class="feed"/> </td>
             </tr>
             <tr class="disclaimer">
-                <td> Please ensure that the scene is well lit and your entire body is visible </td>
+                <td> Please ensure that the scene is well lit and your entire body is visible! </td>
             </tr>
         </table>
     </div>
