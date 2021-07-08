@@ -89,11 +89,11 @@ def gen(camera):
 
             i+=1
 
-            # mp_drawing.draw_landmarks(
-            #     image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
+            mp_drawing.draw_landmarks(
+                image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
 
-            # coords = landmarks_list_to_array(results.pose_landmarks, image.shape)
-            # label_params(image, params, coords)
+            coords = landmarks_list_to_array(results.pose_landmarks, image.shape)
+            label_params(image, params, coords)
 
 
             ret, jpeg = cv2.imencode('.jpg', image)
