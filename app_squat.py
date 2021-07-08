@@ -1,10 +1,6 @@
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
-import dash_dangerously_set_inner_html
 import mediapipe as mp
 import SquatPosture as sp
-from flask import Flask, Response
+from flask import Flask, Response, render_template
 import cv2
 import tensorflow as tf
 import numpy as np
@@ -23,7 +19,7 @@ class VideoCamera(object):
 
 def gen(camera):
     cap = camera.video
-    i=0
+    i = 0
     with mp_pose.Pose(
             min_detection_confidence=0.5,
             min_tracking_confidence=0.5) as pose:
@@ -34,15 +30,15 @@ def gen(camera):
             if not success:
                 print("Ignoring empty camera frame.")
                 # If loading a video, use 'break' instead of 'continue'.
-                # continue
-                break
+                continue
+                # break
 
             image_height, image_width, _ = image.shape
 
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             image.flags.writeable = False
 
-            dim=(image_width//5, image_height//5)
+            dim = (image_width//5, image_height//5)
 
             resized_image = cv2.resize(image, dim)
 
@@ -87,7 +83,7 @@ def gen(camera):
 
             label_final_results(image, label)
 
-            i+=1
+            i += 1
 
             mp_drawing.draw_landmarks(
                 image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
@@ -102,41 +98,16 @@ def gen(camera):
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 
-server = Flask(__name__)
-# external_stylesheets = ['./app.css']
-app = dash.Dash(__name__, server=server)
-app.title = "Posture"
+app = Flask(__name__, template_folder="./web/templates", static_folder="./web/static")
 
+@app.route("/")
+def index():
+    return render_template("index.html")
 
-@server.route('/video_feed')
+@app.route("/video")
 def video_feed():
-    return Response(gen(VideoCamera()) ,mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(gen(VideoCamera()), mimetype="multipart/x-mixed-replace; boundary=frame")
 
 
-app.layout = html.Div(className="main", children=[
-    html.Link(
-        rel="stylesheet",
-        href="/assets/stylesheet.css"
-    ),
-    dash_dangerously_set_inner_html.DangerouslySetInnerHTML("""
-        <div class="main-container">
-            <table cellspacing="20px" class="table">
-                <tr class="row">
-                    <td> <img src="/assets/animation_for_web.gif" class="logo" /> </td>
-                </tr>
-                <tr class="choices">
-                    <td> Your personal AI Gym Trainer </td>
-                </tr>
-                <tr class="row">
-                    <td> <img src="/video_feed" class="feed"/> </td>
-                </tr>
-                <tr class="disclaimer">
-                    <td> Please ensure that the scene is well lit and your entire body is visible </td>
-                </tr>
-            </table>
-        </div>
-    """),
-])
-
-if __name__ == '__main__':
-    app.run_server(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
