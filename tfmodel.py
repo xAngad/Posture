@@ -50,7 +50,6 @@ if not USE_MODEL:
     plt.plot(loss, label='Training Loss')
     plt.title('Training Loss')
     plt.legend()
-
     plt.show()
 
 else:
