@@ -3,7 +3,7 @@
 ##### THIS REPOSITORY CONTAINS MY __FORKED__ VERSION OF [Posture](https://github.com/twixupmysleeve/Posture).
 
 > _Differences between this fork and the original:_
-> - _`app_squat.py` ie. the final web app runs purely on Flask instead of Dash-Plotly_
+> - _`app.py` ie. the final web app runs purely on Flask instead of Dash-Plotly_
 > - _reorganized file structure, especially for front-end rendering_
 > - _cleaned and pruned code_
 
@@ -15,7 +15,7 @@ To run the app:
 - Clone the repository: `git clone https://github.com/xAngad/Posture`
 - cd into the cloned repo: `cd Posture`
 - install dependencies: `python3 -m pip install -r requirements.txt`
-- run app:  `python3 app_squat.py`
+- run app:  `python3 app.py`
 - click the numeric link that appears in your terminal window
 - squat!
 
